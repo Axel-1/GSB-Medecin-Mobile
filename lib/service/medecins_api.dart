@@ -16,4 +16,10 @@ class MedecinsApi {
     ).toList();
     return medecinList;
   }
+
+  Future<Medecin> getMedecin(int id) async {
+    response = await dio.get("http://192.168.1.16:8000/api/medecins/"+id.toString(),
+        options: Options(headers: {Headers.acceptHeader: "application/json"}));
+    return Medecin.fromJson(response.data);
+  }
 }

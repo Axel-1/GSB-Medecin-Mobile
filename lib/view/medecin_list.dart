@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gsb_medecin/model/medecin.dart';
 import 'package:gsb_medecin/service/medecins_api.dart';
 
+import 'medecin_details.dart';
+
 class MedecinList extends StatefulWidget {
   const MedecinList({Key? key}) : super(key: key);
 
@@ -35,6 +37,13 @@ class _MedecinListState extends State<MedecinList> {
                   ),
                   subtitle: Text(snapshot.data![i].adresse),
                   leading: const Icon(Icons.account_circle),
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context,
+                        MedecinDetails.routeName,
+                        arguments: snapshot.data![i].id
+                    );
+                  },
                 );
               },
               itemCount: snapshot.data!.length,
