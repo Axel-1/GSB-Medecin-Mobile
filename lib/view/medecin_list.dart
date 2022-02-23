@@ -17,44 +17,33 @@ class _MedecinListState extends State<MedecinList> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Médecins',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Médecins'),
-          ),
-          body: Center(
-            child: FutureBuilder<List<Medecin>>(
-              future: MedecinsApi().getMedecins(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListView.separated(
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(),
-                    itemBuilder: (context, i) {
-                      return ListTile(
-                        title: Row(
-                          children: [
-                            Text(snapshot.data![i].prenom),
-                            Text(" "),
-                            Text(snapshot.data![i].nom)
-                          ],
-                        ),
-                        subtitle: Text(snapshot.data![i].adresse),
-                      );
-                    },
-                    itemCount: snapshot.data!.length,
-                  );
-                } else {
-                  return const CircularProgressIndicator();
-                }
+    return Scaffold(
+        body: Center(
+      child: FutureBuilder<List<Medecin>>(
+        future: MedecinsApi().getMedecins(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemBuilder: (context, i) {
+                return ListTile(
+                  title: Row(
+                    children: [
+                      Text(snapshot.data![i].prenom),
+                      const Text(" "),
+                      Text(snapshot.data![i].nom)
+                    ],
+                  ),
+                  subtitle: Text(snapshot.data![i].adresse),
+                  leading: const Icon(Icons.account_circle),
+                );
               },
-            ),
-          )),
-    );
+              itemCount: snapshot.data!.length,
+            );
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
+      ),
+    ));
   }
 }

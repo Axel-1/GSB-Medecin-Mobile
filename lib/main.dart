@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:gsb_medecin/view/medecin_list.dart';
+import 'package:flutter/services.dart';
+import 'package:gsb_medecin/view/nav.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+    systemNavigationBarColor: Colors.transparent,
+  ));
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge).then(
+        (_) => runApp(const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,11 +21,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'GSB Médecins',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const MedecinList(),
+      home: const Nav()
     );
   }
 }
