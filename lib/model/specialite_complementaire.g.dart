@@ -9,8 +9,11 @@ part of 'specialite_complementaire.dart';
 SpecialiteComplementaire _$SpecialiteComplementaireFromJson(
         Map<String, dynamic> json) =>
     SpecialiteComplementaire(
-      json['id'] as int,
-      json['libelle'] as String,
+      id: json['id'] as int,
+      libelle: json['libelle'] as String,
+      medecins: (json['medecins'] as List<dynamic>?)
+          ?.map((e) => Medecin.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$SpecialiteComplementaireToJson(
@@ -18,4 +21,5 @@ Map<String, dynamic> _$SpecialiteComplementaireToJson(
     <String, dynamic>{
       'id': instance.id,
       'libelle': instance.libelle,
+      'medecins': instance.medecins,
     };

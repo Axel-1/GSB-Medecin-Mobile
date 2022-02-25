@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gsb_medecin/view/departement_list.dart';
 import 'package:gsb_medecin/view/medecin_details.dart';
+import 'package:gsb_medecin/view/medecin_list.dart';
 import 'package:gsb_medecin/view/nav.dart';
 
 void main() {
@@ -23,8 +25,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'GSB Médecins',
         routes: {
-          MedecinDetails.routeName: (context) =>
-          const MedecinDetails(),
+          MedecinDetails.routeName: (context) => const MedecinDetails(),
+          DepartementList.routeName: (context) => const DepartementList(),
+          MedecinList.routeName: (context) => const MedecinList(),
         },
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

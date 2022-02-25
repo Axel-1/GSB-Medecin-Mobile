@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:gsb_medecin/model/medecin.dart';
+import 'package:gsb_medecin/model/departement.dart';
+import 'package:gsb_medecin/service/medecins_api.dart';
+import 'package:gsb_medecin/view/medecin_list.dart';
 
-import 'medecin_details.dart';
+import '../model/medecin.dart';
 
-class MedecinList extends StatefulWidget {
-  const MedecinList({Key? key}) : super(key: key);
+class DepartementList extends StatefulWidget {
+  const DepartementList({Key? key}) : super(key: key);
 
-  static const routeName = '/medecinList';
+  static const routeName = '/departementList';
 
   @override
-  State<MedecinList> createState() => _MedecinListState();
+  State<DepartementList> createState() => _DepartementListState();
 }
 
-class _MedecinListState extends State<MedecinList> {
+class _DepartementListState extends State<DepartementList> {
   @override
   void initState() {
     super.initState();
@@ -21,17 +23,17 @@ class _MedecinListState extends State<MedecinList> {
   @override
   Widget build(BuildContext context) {
     final args =
-        ModalRoute.of(context)!.settings.arguments as Future<List<Medecin>>;
+        ModalRoute.of(context)!.settings.arguments as Future<List<Departement>>;
 
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey.shade50,
           shadowColor: Colors.transparent,
           foregroundColor: Colors.black,
-          title: const Text("Médecins"),
+          title: const Text("Départements"),
         ),
         body: Center(
-          child: FutureBuilder<List<Medecin>>(
+          child: FutureBuilder<List<Departement>>(
             future: args,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -40,16 +42,15 @@ class _MedecinListState extends State<MedecinList> {
                     return ListTile(
                       title: Row(
                         children: [
-                          Text(snapshot.data![i].prenom!),
-                          const Text(" "),
-                          Text(snapshot.data![i].nom!)
+                          Text(snapshot.data![i].nom),
                         ],
                       ),
-                      subtitle: Text(snapshot.data![i].adresse!),
-                      leading: const Icon(Icons.account_circle),
+                      leading: const Icon(Icons.place),
                       onTap: () {
-                        Navigator.pushNamed(context, MedecinDetails.routeName,
-                            arguments: snapshot.data![i].id);
+                        Future<List<Medecin>> medecins = MedecinsApi()
+                            .getMedecinsByDepartement(snapshot.data![i]);
+                        Navigator.pushNamed(context, MedecinList.routeName,
+                            arguments: medecins);
                       },
                     );
                   },

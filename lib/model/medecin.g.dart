@@ -7,11 +7,11 @@ part of 'medecin.dart';
 // **************************************************************************
 
 Medecin _$MedecinFromJson(Map<String, dynamic> json) => Medecin(
-      json['id'] as int,
-      json['nom'] as String,
-      json['prenom'] as String,
-      json['adresse'] as String,
-      json['tel'] as String,
+      id: json['id'] as int,
+      nom: json['nom'] as String?,
+      prenom: json['prenom'] as String?,
+      adresse: json['adresse'] as String?,
+      tel: json['tel'] as String?,
     );
 
 Map<String, dynamic> _$MedecinToJson(Medecin instance) => <String, dynamic>{

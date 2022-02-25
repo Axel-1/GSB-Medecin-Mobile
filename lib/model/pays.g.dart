@@ -7,11 +7,15 @@ part of 'pays.dart';
 // **************************************************************************
 
 Pays _$PaysFromJson(Map<String, dynamic> json) => Pays(
-      json['id'] as int,
-      json['nom'] as String,
+      id: json['id'] as int,
+      nom: json['nom'] as String,
+      departements: (json['departements'] as List<dynamic>?)
+          ?.map((e) => Departement.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$PaysToJson(Pays instance) => <String, dynamic>{
       'id': instance.id,
       'nom': instance.nom,
+      'departements': instance.departements,
     };

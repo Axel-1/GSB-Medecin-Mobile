@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gsb_medecin/service/medecins_api.dart';
+
 import '../model/medecin.dart';
 
 class MedecinDetails extends StatefulWidget {
@@ -34,10 +35,10 @@ class _MedecinDetailsState extends State<MedecinDetails> {
                     padding: const EdgeInsets.all(20),
                     child: Row(
                       children: [
-                        Text(snapshot.data!.prenom,
+                        Text(snapshot.data!.prenom!,
                             style: const TextStyle(fontSize: 30)),
                         const Text(" ", style: TextStyle(fontSize: 30)),
-                        Text(snapshot.data!.nom,
+                        Text(snapshot.data!.nom!,
                             style: const TextStyle(fontSize: 30))
                       ],
                     ),

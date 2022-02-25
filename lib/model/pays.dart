@@ -1,13 +1,15 @@
+import 'package:gsb_medecin/model/departement.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'pays.g.dart';
 
 @JsonSerializable()
 class Pays {
-  Pays(this.id, this.nom);
-
   int id;
   String nom;
+  List<Departement>? departements;
+
+  Pays({required this.id, required this.nom, this.departements});
 
   factory Pays.fromJson(Map<String, dynamic> json) => _$PaysFromJson(json);
 
