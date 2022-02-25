@@ -12,6 +12,8 @@ class MedecinList extends StatefulWidget {
 }
 
 class _MedecinListState extends State<MedecinList> {
+  Future<List<Medecin>> _future = MedecinsApi().getMedecins();
+
   @override
   void initState() {
     super.initState();
@@ -22,9 +24,16 @@ class _MedecinListState extends State<MedecinList> {
     return Scaffold(
         body: Center(
       child: FutureBuilder<List<Medecin>>(
-        future: MedecinsApi().getMedecins(),
+        future: _future,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasError) {
+            return ElevatedButton(
+                onPressed: () {
+                  _future = MedecinsApi().getMedecins();
+                  setState(() {});
+                },
+                child: const Text("Réessayer"));
+          } else if (snapshot.hasData) {
             return ListView.builder(
               itemBuilder: (context, i) {
                 return ListTile(
@@ -38,11 +47,8 @@ class _MedecinListState extends State<MedecinList> {
                   subtitle: Text(snapshot.data![i].adresse),
                   leading: const Icon(Icons.account_circle),
                   onTap: () {
-                    Navigator.pushNamed(
-                        context,
-                        MedecinDetails.routeName,
-                        arguments: snapshot.data![i].id
-                    );
+                    Navigator.pushNamed(context, MedecinDetails.routeName,
+                        arguments: snapshot.data![i].id);
                   },
                 );
               },
