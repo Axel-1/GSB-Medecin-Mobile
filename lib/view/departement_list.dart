@@ -27,9 +27,6 @@ class _DepartementListState extends State<DepartementList> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey.shade50,
-          shadowColor: Colors.transparent,
-          foregroundColor: Colors.black,
           title: const Text("Départements"),
         ),
         body: Center(

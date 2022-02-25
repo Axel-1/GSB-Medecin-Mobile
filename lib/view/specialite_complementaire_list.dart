@@ -27,9 +27,6 @@ class _SpecialiteComplementaireListState
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey.shade50,
-          shadowColor: Colors.transparent,
-          foregroundColor: Colors.black,
           title: const Text("Spécialités complémentaires"),
         ),
         body: Center(

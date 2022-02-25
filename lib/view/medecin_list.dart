@@ -25,9 +25,6 @@ class _MedecinListState extends State<MedecinList> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey.shade50,
-          shadowColor: Colors.transparent,
-          foregroundColor: Colors.black,
           title: const Text("Médecins"),
         ),
         body: Center(

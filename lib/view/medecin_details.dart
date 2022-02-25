@@ -18,11 +18,7 @@ class _MedecinDetailsState extends State<MedecinDetails> {
     final args = ModalRoute.of(context)!.settings.arguments as int;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
-        shadowColor: Colors.transparent,
-        foregroundColor: Colors.black,
-      ),
+      appBar: AppBar(),
       body: Center(
         child: FutureBuilder<Medecin>(
           future: MedecinsApi().getMedecin(args),

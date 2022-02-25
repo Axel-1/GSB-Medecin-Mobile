@@ -31,8 +31,21 @@ class MyApp extends StatelessWidget {
         },
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
           useMaterial3: true,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.cyan, brightness: Brightness.light),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Theme.of(context).canvasColor,
+            shadowColor: Colors.transparent,
+            foregroundColor: Theme.of(context).textTheme.titleLarge?.color,
+          )
+        ),
+        darkTheme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.cyan, brightness: Brightness.dark, accentColor: Colors.cyanAccent),
+            appBarTheme: AppBarTheme(
+              shadowColor: Colors.transparent,
+              backgroundColor: Colors.grey[850],
+            ),
         ),
         home: const Nav());
   }
