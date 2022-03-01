@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gsb_medecin/view/pays_list.dart';
+import 'package:gsb_medecin/view/search_medecin_list.dart';
 import 'package:gsb_medecin/view/specialite_complementaire_list.dart';
 
 class Nav extends StatefulWidget {
@@ -12,11 +13,9 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   final List<Widget> screens = [
+    const SearchMedecinList(),
     const PaysList(),
     const SpecialiteComplementaireList(),
-    const Center(
-      child: Text("Recherche"),
-    )
   ];
 
   void _onItemTapped(int index) {
@@ -40,6 +39,11 @@ class _NavState extends State<Nav> {
           height: 60,
           destinations: const [
             NavigationDestination(
+              icon: Icon(Icons.medical_services_outlined),
+              selectedIcon: Icon(Icons.medical_services),
+              label: 'Médecins',
+            ),
+            NavigationDestination(
               icon: Icon(Icons.place_outlined),
               selectedIcon: Icon(Icons.place),
               label: 'Localisation',
@@ -48,11 +52,6 @@ class _NavState extends State<Nav> {
               icon: Icon(Icons.format_list_bulleted_outlined),
               selectedIcon: Icon(Icons.format_list_bulleted),
               label: 'Spécialités',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.search_outlined),
-              selectedIcon: Icon(Icons.search),
-              label: 'Recherche',
             ),
           ],
         ),

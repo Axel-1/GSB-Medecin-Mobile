@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
             backgroundColor: Theme.of(context).canvasColor,
             shadowColor: Colors.transparent,
             foregroundColor: Theme.of(context).textTheme.titleLarge?.color,
-          )
+          ),
+          inputDecorationTheme: const InputDecorationTheme(border: InputBorder.none),
         ),
         darkTheme: ThemeData(
             useMaterial3: true,
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
               shadowColor: Colors.transparent,
               backgroundColor: Colors.grey[850],
             ),
+            inputDecorationTheme: const InputDecorationTheme(border: InputBorder.none),
         ),
         home: const Nav());
   }

@@ -9,13 +9,18 @@ class MedecinsApi {
   late Response response;
   Dio dio = Dio();
 
-  Future<List<Medecin>> getMedecins() async {
+  Future<List<Medecin>> getMedecins({String? query}) async {
     response = await dio.get("http://192.168.1.16:8000/api/medecins",
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     var jsonList = response.data as List;
     var medecinList = jsonList.map((jsonElement) {
       return Medecin.fromJson(jsonElement);
     }).toList();
+
+    if (query != null) {
+      medecinList = medecinList.where((element) => element.nom!.toLowerCase().contains((query.toLowerCase()))).toList();
+    }
+
     return medecinList;
   }
 
