@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gsb_medecin/service/medecins_api.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../model/medecin.dart';
@@ -63,13 +64,16 @@ class _MedecinDetailsState extends State<MedecinDetails> {
                   ),
                   const Divider(),
                   ListTile(
-                    leading: const Icon(Icons.place_outlined),
+                    leading: Icon(Icons.place_outlined, color: Theme.of(context).colorScheme.primary),
                     title: Text(snapshot.data!.adresse!),
                     subtitle: Text(snapshot.data!.departement!.nom+", "+snapshot.data!.departement!.pays!.nom),
+                    onTap: () {
+                      MapsLauncher.launchQuery(snapshot.data!.adresse!);
+                    },
                   ),
                   const Divider(),
                   ListTile(
-                    leading: const Icon(Icons.phone_outlined),
+                    leading: Icon(Icons.phone_outlined, color: Theme.of(context).colorScheme.primary),
                     title: Text(snapshot.data!.tel!),
                     onTap: () {
                       launch('tel:'+snapshot.data!.tel!);
