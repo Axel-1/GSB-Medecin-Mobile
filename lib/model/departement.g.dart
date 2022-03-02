@@ -12,6 +12,9 @@ Departement _$DepartementFromJson(Map<String, dynamic> json) => Departement(
       medecins: (json['medecins'] as List<dynamic>?)
           ?.map((e) => Medecin.fromJson(e as Map<String, dynamic>))
           .toList(),
+      pays: json['pays'] == null
+          ? null
+          : Pays.fromJson(json['pays'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DepartementToJson(Departement instance) =>
@@ -19,4 +22,5 @@ Map<String, dynamic> _$DepartementToJson(Departement instance) =>
       'id': instance.id,
       'nom': instance.nom,
       'medecins': instance.medecins,
+      'pays': instance.pays,
     };

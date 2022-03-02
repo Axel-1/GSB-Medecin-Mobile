@@ -1,4 +1,5 @@
 import 'package:gsb_medecin/model/medecin.dart';
+import 'package:gsb_medecin/model/pays.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'departement.g.dart';
@@ -8,8 +9,9 @@ class Departement {
   int id;
   String nom;
   List<Medecin>? medecins;
+  Pays? pays;
 
-  Departement({required this.id, required this.nom, this.medecins});
+  Departement({required this.id, required this.nom, this.medecins, this.pays});
 
   factory Departement.fromJson(Map<String, dynamic> json) =>
       _$DepartementFromJson(json);
