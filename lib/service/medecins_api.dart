@@ -8,9 +8,10 @@ import '../model/pays.dart';
 class MedecinsApi {
   late Response response;
   Dio dio = Dio();
+  String baseURL = "http://192.168.1.16:8000/api";
 
   Future<List<Medecin>> getMedecins({String? query}) async {
-    response = await dio.get("http://192.168.1.16:8000/api/medecins",
+    response = await dio.get(baseURL+"/medecins",
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     var jsonList = response.data as List;
     var medecinList = jsonList.map((jsonElement) {
@@ -26,13 +27,13 @@ class MedecinsApi {
 
   Future<Medecin> getMedecin(int id) async {
     response = await dio.get(
-        "http://192.168.1.16:8000/api/medecins/" + id.toString(),
+        baseURL+"/medecins/" + id.toString(),
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     return Medecin.fromJson(response.data);
   }
 
   Future<List<Pays>> getPaysList() async {
-    response = await dio.get("http://192.168.1.16:8000/api/pays",
+    response = await dio.get(baseURL+"/pays",
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     var jsonList = response.data as List;
     var paysList = jsonList.map((jsonElement) {
@@ -43,13 +44,13 @@ class MedecinsApi {
 
   Future<Pays> getPays(int id) async {
     response = await dio.get(
-        "http://192.168.1.16:8000/api/pays/" + id.toString(),
+        baseURL+"/pays/" + id.toString(),
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     return Pays.fromJson(response.data);
   }
 
   Future<List<Departement>> getDepartements() async {
-    response = await dio.get("http://192.168.1.16:8000/api/departements",
+    response = await dio.get(baseURL+"/departements",
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     var jsonList = response.data as List;
     var departementList = jsonList.map((jsonElement) {
@@ -60,7 +61,7 @@ class MedecinsApi {
 
   Future<List<Departement>> getDepartementsByPays(Pays pays) async {
     response = await dio.get(
-        "http://192.168.1.16:8000/api/pays/" + pays.id.toString(),
+        baseURL+"/pays/" + pays.id.toString(),
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     List<Departement> departements = [];
     Pays paysFromAPI = Pays.fromJson(response.data);
@@ -72,7 +73,7 @@ class MedecinsApi {
 
   Future<Departement> getDepartement(int id) async {
     response = await dio.get(
-        "http://192.168.1.16:8000/api/medecins/" + id.toString(),
+        baseURL+"/medecins/" + id.toString(),
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     return Departement.fromJson(response.data);
   }
@@ -80,7 +81,7 @@ class MedecinsApi {
   Future<List<Medecin>> getMedecinsByDepartement(
       Departement departement) async {
     response = await dio.get(
-        "http://192.168.1.16:8000/api/departements/" +
+        baseURL+"/departements/" +
             departement.id.toString(),
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     List<Medecin> medecins = [];
@@ -93,7 +94,7 @@ class MedecinsApi {
 
   Future<List<SpecialiteComplementaire>> getSpecialiteComplementaires() async {
     response = await dio.get(
-        "http://192.168.1.16:8000/api/specialite_complementaires",
+        baseURL+"/specialite_complementaires",
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     var jsonList = response.data as List;
     var specialiteComplementairesList = jsonList.map((jsonElement) {
@@ -105,7 +106,7 @@ class MedecinsApi {
   Future<List<Medecin>> getMedecinsBySpecialiteComplementaire(
       SpecialiteComplementaire spe) async {
     response = await dio.get(
-        "http://192.168.1.16:8000/api/specialite_complementaires/" +
+        baseURL+"/specialite_complementaires/" +
             spe.id.toString(),
         options: Options(headers: {Headers.acceptHeader: "application/json"}));
     List<Medecin> medecins = [];
